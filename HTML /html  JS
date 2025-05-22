@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>LINE爆撃くん ToDo</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #fefefe; }
+    h1 { font-size: 1.8rem; }
+    #todo-list { margin-top: 1rem; }
+    .todo-item { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>🔥 LINE爆撃くん</h1>
+  <input id="todo-input" type="text" placeholder="やることを書く..." />
+  <button onclick="addTask()">追加</button>
+
+  <div id="todo-list"></div>
+
+  <script>
+    let tasks = [];
+
+    function addTask() {
+      const input = document.getElementById('todo-input');
+      const value = input.value.trim();
+      if (!value) return;
+      const task = { text: value, created: Date.now() };
+      tasks.push(task);
+      render();
+      input.value = '';
+    }
+
+    function render() {
+      const list = document.getElementById('todo-list');
+      list.innerHTML = '';
+      tasks.forEach((t, i) => {
+        const el = document.createElement('div');
+        el.className = 'todo-item';
+        el.innerHTML = `${t.text} <button onclick="done(${i})">完了</button>`;
+        list.appendChild(el);
+      });
+    }
+
+    function done(index) {
+      tasks.splice(index, 1);
+      render();
+    }
+
+    // 定期的にバックエンドに「放置タスクがあるか」送信
+    setInterval(() => {
+      if (tasks.length > 0) {
+        const now = Date.now();
+        const oldest = Math.min(...tasks.map(t => t.created));
+        const elapsed = (now - oldest) / 1000; // 秒
+
+        if (elapsed > 60) { // 60秒以上放置
+          fetch('/notify', { method: 'POST' });
+          console.log('⚠️ 放置検出 → 通知発火');
+        }
+      }
+    }, 10000); // 10秒ごとに確認
+  </script>
+</body>
+</html>
