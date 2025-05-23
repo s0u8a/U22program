@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>動的リスト作成</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>動的リスト作成</h1>
+
+  <!-- 入力フォーム -->
+  <div class="input-form">
+    <input type="text" id="itemInput" placeholder="新しい項目を入力">
+    <button onclick="addItem()">追加</button>
+  </div>
+
+  <!-- リスト表示エリア -->
+  <div class="list-container">
+    <table id="itemList">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>項目</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="listBody">
+        <!-- ここに動的に項目が追加されます -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
