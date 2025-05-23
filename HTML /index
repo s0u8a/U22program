@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>通知キャラ プロフィール表</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>通知キャラクター 一覧</h1>
+
+  <!-- 静的な1人分の例 -->
+  <div class="profile-card">
+    <h2>通知キャラ：病み彼女</h2>
+    <div class="profile-item">
+      <span class="label">性格</span>
+      <span class="value">依存系・重い・狂気</span>
+    </div>
+    <div class="profile-item">
+      <span class="label">通知文例</span>
+      <span class="value">「まだ…？ずっと待ってるんだけど…」</span>
+    </div>
+    <div class="profile-item">
+      <span class="label">圧力レベル</span>
+      <span class="value">★★★★☆</span>
+    </div>
+    <div class="profile-item">
+      <span class="label">得意なトリガー</span>
+      <span class="value">放置3時間以上</span>
+    </div>
+    <div class="profile-item">
+      <span class="label">癒し度</span>
+      <span class="value">★★☆☆☆</span>
+    </div>
+  </div>
+
+  <!-- JavaScriptで動的に追加されるキャラがここに続く -->
+  <script src="script.js"></script>
+</body>
+</html>
